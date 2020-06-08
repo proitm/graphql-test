@@ -62,7 +62,7 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(CurrencyType),
       args: {id: {type: GraphQLID}},
       resolve(parent, args) {
-        return currencies;
+        return models.Currency.find();
       }
     }
   }
