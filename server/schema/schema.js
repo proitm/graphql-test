@@ -55,9 +55,7 @@ const RootQuery = new GraphQLObjectType({
       type: CurrencyType,
       args: {id: {type: GraphQLID}},
       resolve(parent, args) {
-        // var result = _.find(currencies, { id: args.id });
-        // return result;
-
+        return models.Currency.findOne({ _id: args.id });
       }
     },
     currencyList: {
@@ -80,14 +78,11 @@ const Mutation = new GraphQLObjectType({
         symbol: {type: GraphQLString}
       },
       resolve(parent, args) {
-        console.log(args);
         let currency = new models.Currency({
           name: args.name,
           symbol: args.symbol
         });
-        console.log(currency);
         currency.save();
-        console.log(currency);
         return currency;
       }
     }
